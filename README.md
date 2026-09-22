@@ -1,5 +1,7 @@
 # Implement Semantic Search to Moment Search
 
+<a href="https://colab.research.google.com/github/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open live_test.ipynb in Colab"></a>
+
 A retrieval comparison on one YouTube transcript. Part 1 is baseline semantic search over fixed chunks. Part 2 is Moment RAG: the same transcript, grouped into spoken moments, retrieved as a whole idea.
 
 The verified source is [Steve Jobs, Stanford commencement address (2005)](https://www.youtube.com/watch?v=UF8uR6Z6KLc). It is one talk with three stories, pauses, and topic cues, so both indexes can be asked the same questions.
@@ -111,13 +113,13 @@ python app.py "What did Steve Jobs say about the calligraphy class?"
 
 ### Live notebook for a grader
 
-`live_test.ipynb` is the same pipeline, split into cells so a grader can re-run it and type a question without editing `app.py`.
+<a href="https://colab.research.google.com/github/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb" target="_blank" rel="noopener noreferrer">Open live_test.ipynb in Colab</a>. That link opens Google Colab in a new tab and loads the notebook. Choose **Runtime → Run all**. The first cell clones this repository and installs `requirements.txt`. The next cell builds both indexes. The last cell is the question to edit.
 
-1. Use the `.venv` interpreter above (`ipykernel` is in `requirements.txt`).
-2. Open `live_test.ipynb`.
-3. Run All. The first code cell downloads the YouTube captions, builds both indexes, and prints the moment inventory. That cell takes about a minute the first time, while the embedding model downloads into `.cache/`.
-4. Read the benchmark cell. It prints the same side-by-side and scorecard as `python app.py`.
-5. Edit `LIVE_QUERY` in the last cell and run that cell again. The indexes stay loaded, so only the new question is retrieved.
+The same notebook is in the repo as [live_test.ipynb](https://github.com/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb) if you want to run it locally with the `.venv` above.
+
+1. In Colab, Run all. The setup cell installs dependencies, then the index cell downloads the YouTube captions and prints the moment inventory. The first Colab run takes a few minutes while packages and the embedding model download.
+2. Read the benchmark cell. It prints the same side-by-side and scorecard as `python app.py`.
+3. Edit `LIVE_QUERY` in the last cell and run that cell again. The indexes stay loaded, so only the new question is retrieved.
 
 ```python
 LIVE_QUERY = "What did Steve Jobs say about the calligraphy class?"
@@ -145,7 +147,7 @@ If YouTube blocks the caption request, the script prints the error and uses the 
 | Split into chunks | 250 characters, 50 overlap, `baseline_collection` | Done |
 | Generate embeddings | `all-MiniLM-L6-v2` | Done |
 | Store embeddings | ChromaDB | Done |
-| Accept a query and retrieve chunks | Two benchmark questions, `python app.py "your question"`, and `LIVE_QUERY` in `live_test.ipynb` | Done |
+| Accept a query and retrieve chunks | Two benchmark questions, `python app.py "your question"`, and `LIVE_QUERY` in [live_test.ipynb on Colab](https://colab.research.google.com/github/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb) | Done |
 | Answer from retrieved context | Formatted extractive answer from the top 3 chunks | Done |
 | Identify moments | Pauses of at least 2 seconds and topic cues | Done |
 | Structure segments around moments | `start_time`, `end_time`, `moment_summary` | Done |
