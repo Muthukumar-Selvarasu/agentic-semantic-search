@@ -1,0 +1,4 @@
+youtube-transcript-api
+chromadb
+sentence-transformers
+ipykernel
