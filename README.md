@@ -1,21 +1,32 @@
 # Implement Semantic Search to Moment Search
 
-<a href="https://colab.research.google.com/github/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open live_test.ipynb in Colab"></a>
-
 A retrieval comparison on one YouTube transcript. Part 1 is baseline semantic search over fixed chunks. Part 2 is Moment RAG: the same transcript, grouped into spoken moments, retrieved as a whole idea.
 
 The verified source is [Steve Jobs, Stanford commencement address (2005)](https://www.youtube.com/watch?v=UF8uR6Z6KLc). It is one talk with three stories, pauses, and topic cues, so both indexes can be asked the same questions.
 
 ## Presentation and live test
 
-These are the two files to review.
+Muthukumar Selvarasu, FDE Platform Engineer. Review these three.
 
 | File | What to review |
 | --- | --- |
 | [Semantic-Search-to-Moment-Search.pptx](Semantic-Search-to-Moment-Search.pptx) | Five slides: the video, baseline chunking, Moment RAG, the side-by-side comparison, and the scorecard taken from the live test |
 | [live-test.mp4](live-test.mp4) | Recording of `python app.py`: caption download, moment inventory, both answers, and the scorecard |
+| [live_test.ipynb](live_test.ipynb) | Live notebook for a grader. Open it in Colab, run every cell, then ask your own question |
 
-Muthukumar Selvarasu, FDE Platform Engineer.
+<a href="https://colab.research.google.com/github/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb" target="_blank" rel="noopener noreferrer"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open live_test.ipynb in Colab"></a>
+
+That badge opens Google Colab in a new tab and loads the notebook.
+
+1. Choose **Runtime → Run all**. The first cell clones this repository and installs `requirements.txt`. The next cell downloads the YouTube captions and builds both indexes. The first Colab run takes a few minutes while packages and the embedding model download.
+2. Read the benchmark cell. It prints the same side-by-side and scorecard as `python app.py`.
+3. Edit `LIVE_QUERY` in the last cell and run that cell again. The indexes stay loaded, so only the new question is retrieved.
+
+```python
+LIVE_QUERY = "What did Steve Jobs say about the calligraphy class?"
+```
+
+If YouTube blocks the caption request, the notebook prints the error and continues on the embedded lecture. The comparison still runs.
 
 ## Requirement
 
@@ -122,21 +133,7 @@ Ask your own question as well. It runs after the two benchmarks, through both in
 python app.py "What did Steve Jobs say about the calligraphy class?"
 ```
 
-### Live notebook for a grader
-
-<a href="https://colab.research.google.com/github/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb" target="_blank" rel="noopener noreferrer">Open live_test.ipynb in Colab</a>. That link opens Google Colab in a new tab and loads the notebook. Choose **Runtime → Run all**. The first cell clones this repository and installs `requirements.txt`. The next cell builds both indexes. The last cell is the question to edit.
-
-The same notebook is in the repo as [live_test.ipynb](https://github.com/Muthukumar-Selvarasu/agentic-semantic-search/blob/main/live_test.ipynb) if you want to run it locally with the `.venv` above.
-
-1. In Colab, Run all. The setup cell installs dependencies, then the index cell downloads the YouTube captions and prints the moment inventory. The first Colab run takes a few minutes while packages and the embedding model download.
-2. Read the benchmark cell. It prints the same side-by-side and scorecard as `python app.py`.
-3. Edit `LIVE_QUERY` in the last cell and run that cell again. The indexes stay loaded, so only the new question is retrieved.
-
-```python
-LIVE_QUERY = "What did Steve Jobs say about the calligraphy class?"
-```
-
-If YouTube blocks the caption request, the notebook prints the error and continues on the embedded lecture. The comparison still runs.
+The live notebook for a grader is in [Presentation and live test](#presentation-and-live-test), including the Colab badge.
 
 What to look for:
 
