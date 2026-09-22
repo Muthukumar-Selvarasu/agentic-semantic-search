@@ -90,7 +90,7 @@ YouTube captions (or embedded lecture)
 
 **Answers.** There is no separate chat-model API in this project. The answer is the retrieved context, formatted with timestamps and a context-quality line. That is the passage a later language model would read. Quality is judged by sentence edges, whether the windows are contiguous, a token estimate (`characters / 4`), and whether known phrases from the question appear.
 
-**What the comparison showed.** On the calligraphy question both pipelines hit 3/3 key phrases. The baseline answer is clipped and includes a Stewart Brand passage from 13:18. Moment RAG returns one intact span, 04:47–05:33. On the death question the baseline hit 0/3 key phrases and mixed in the love-and-loss story. Moment RAG hit "you are going to die" inside 09:21–10:59. "Your time is limited, so don't waste it" sits in a later moment (11:41–12:58), so top-1 moment retrieval does not automatically include the next pause. The full write-up and scorecard are in `SUMMARY.md`. The five-slide deck is [Semantic-Search-to-Moment-Search.pptx](Semantic-Search-to-Moment-Search.pptx). The narrated walkthrough is [Semantic-Search-to-Moment-Search.mp4](Semantic-Search-to-Moment-Search.mp4).
+**What the comparison showed.** On the calligraphy question both pipelines hit 3/3 key phrases. The baseline answer is clipped and includes a Stewart Brand passage from 13:18. Moment RAG returns one intact span, 04:47–05:33. On the death question the baseline hit 0/3 key phrases and mixed in the love-and-loss story. Moment RAG hit "you are going to die" inside 09:21–10:59. "Your time is limited, so don't waste it" sits in a later moment (11:41–12:58), so top-1 moment retrieval does not automatically include the next pause. The full write-up and scorecard are in `SUMMARY.md`. The five-slide deck is [Semantic-Search-to-Moment-Search.pptx](Semantic-Search-to-Moment-Search.pptx). A recording of the live test, `python app.py`, is [live-test.mp4](live-test.mp4).
 
 ## How to test
 
@@ -154,7 +154,7 @@ If YouTube blocks the caption request, the script prints the error and uses the 
 | Retrieve moment-level context | Top moment's full text in `moment_collection` | Done |
 | Compare the two approaches | Side-by-side output and `SUMMARY.md` | Done |
 | Explain the quality change | Findings in `SUMMARY.md` | Done |
-| Presentation | Five-slide deck in `Semantic-Search-to-Moment-Search.pptx`, outline in `SUMMARY.md`, narrated walkthrough in `Semantic-Search-to-Moment-Search.mp4` | Done |
+| Presentation | Five-slide deck in `Semantic-Search-to-Moment-Search.pptx`, outline in `SUMMARY.md`, live test recording in `live-test.mp4` | Done |
 | Recorded Loom file | The outline is the script. No video file is in this repo. | Outline only |
 
 Linear project: [Semantic-Search](https://linear.app/fdem/project/semantic-search-64c96975b4d3). The five issues FDE-170 through FDE-174 are Done and follow this same split: transcript, Part 1, Part 2, comparison, presentation or Loom.
