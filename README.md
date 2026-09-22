@@ -6,6 +6,17 @@ A retrieval comparison on one YouTube transcript. Part 1 is baseline semantic se
 
 The verified source is [Steve Jobs, Stanford commencement address (2005)](https://www.youtube.com/watch?v=UF8uR6Z6KLc). It is one talk with three stories, pauses, and topic cues, so both indexes can be asked the same questions.
 
+## Presentation and live test
+
+These are the two files to review.
+
+| File | What to review |
+| --- | --- |
+| [Semantic-Search-to-Moment-Search.pptx](Semantic-Search-to-Moment-Search.pptx) | Five slides: the video, baseline chunking, Moment RAG, the side-by-side comparison, and the scorecard taken from the live test |
+| [live-test.mp4](live-test.mp4) | Recording of `python app.py`: caption download, moment inventory, both answers, and the scorecard |
+
+Muthukumar Selvarasu, FDE Platform Engineer.
+
 ## Requirement
 
 **Objective.** Explore Moment RAG by reviewing the approach, understanding its architecture, and implementing a comparable retrieval-augmented generation pipeline on a YouTube video transcript. Build a baseline RAG system with semantic search first, then a Moment RAG-style architecture, and compare the two.
@@ -90,7 +101,7 @@ YouTube captions (or embedded lecture)
 
 **Answers.** There is no separate chat-model API in this project. The answer is the retrieved context, formatted with timestamps and a context-quality line. That is the passage a later language model would read. Quality is judged by sentence edges, whether the windows are contiguous, a token estimate (`characters / 4`), and whether known phrases from the question appear.
 
-**What the comparison showed.** On the calligraphy question both pipelines hit 3/3 key phrases. The baseline answer is clipped and includes a Stewart Brand passage from 13:18. Moment RAG returns one intact span, 04:47–05:33. On the death question the baseline hit 0/3 key phrases and mixed in the love-and-loss story. Moment RAG hit "you are going to die" inside 09:21–10:59. "Your time is limited, so don't waste it" sits in a later moment (11:41–12:58), so top-1 moment retrieval does not automatically include the next pause. The full write-up and scorecard are in `SUMMARY.md`. The five-slide deck is [Semantic-Search-to-Moment-Search.pptx](Semantic-Search-to-Moment-Search.pptx). A recording of the live test, `python app.py`, is [live-test.mp4](live-test.mp4).
+**What the comparison showed.** On the calligraphy question both pipelines hit 3/3 key phrases. The baseline answer is clipped and includes a Stewart Brand passage from 13:18. Moment RAG returns one intact span, 04:47–05:33. On the death question the baseline hit 0/3 key phrases and mixed in the love-and-loss story. Moment RAG hit "you are going to die" inside 09:21–10:59. "Your time is limited, so don't waste it" sits in a later moment (11:41–12:58), so top-1 moment retrieval does not automatically include the next pause. The full write-up and scorecard are in `SUMMARY.md`. The slides and the live-test recording are linked at the top of this file.
 
 ## How to test
 
@@ -154,7 +165,7 @@ If YouTube blocks the caption request, the script prints the error and uses the 
 | Retrieve moment-level context | Top moment's full text in `moment_collection` | Done |
 | Compare the two approaches | Side-by-side output and `SUMMARY.md` | Done |
 | Explain the quality change | Findings in `SUMMARY.md` | Done |
-| Presentation | Five-slide deck in `Semantic-Search-to-Moment-Search.pptx`, outline in `SUMMARY.md`, live test recording in `live-test.mp4` | Done |
-| Recorded Loom file | The outline is the script. No video file is in this repo. | Outline only |
+| Presentation | [Semantic-Search-to-Moment-Search.pptx](Semantic-Search-to-Moment-Search.pptx), with the outline in `SUMMARY.md` | Done |
+| Live test recording | [live-test.mp4](live-test.mp4), a recording of `python app.py` | Done |
 
 Linear project: [Semantic-Search](https://linear.app/fdem/project/semantic-search-64c96975b4d3). The five issues FDE-170 through FDE-174 are Done and follow this same split: transcript, Part 1, Part 2, comparison, presentation or Loom.
